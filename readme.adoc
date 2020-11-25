@@ -63,4 +63,4 @@ public class JAXBSoapService {
 
 ----
 
-NOTE: Now you could use @Autowired annotation do DI into your webservices. All application server features (security, wsdl providing etc) will be saved.
+NOTE: Now you could use @Autowired annotation to DI into your webservices. All application server features (security, wsdl providing etc) will be saved.
