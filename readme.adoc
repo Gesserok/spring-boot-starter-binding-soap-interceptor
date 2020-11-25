@@ -1,0 +1,66 @@
+*A spring binding library for JEE applications.*
+
+NOTE: This library adds com.sbrf.spring.binding.SpringBindingInterceptor that injects spring beans from context to fields annotated with @Autowired
+
+'''
+*Short example of using:*
+
+- import dependency:
+[source,groovy]
+----
+implementation "com.sbrf.spring:spring-boot-starter-binding-interceptor:1.0.0.0"
+----
+
+- enable a configuration (@EnableSpringBinding):
+[source,java]
+----
+import com.sbrf.spring.binding.EnableSpringBinding;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+@SpringBootApplication
+@EnableSpringBinding
+public class TestApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(TestApplication.class);
+    }
+}
+
+----
+
+- attach the  com.sbrf.spring.binding.SpringBindingInterceptor:
+[source,java]
+----
+import com.sbrf.spring.binding.SpringBindingInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import ua.com.tests.jeespring.example.springbeans.SomeInterfacedBean;
+import ua.com.tests.jeespring.example.springbeans.SomeBean;
+
+import javax.interceptor.Interceptors;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+@WebService
+@Interceptors({SpringBindingInterceptor.class})
+public class JAXBSoapService {
+
+    @Autowired
+    private SomeBean someBean;
+
+    @Autowired
+    private SomeInterfacedBean someInterfacedBean;
+
+
+    @WebMethod
+    public String echo(String s) {
+        return s + ": someBean: " + someBean
+                + "; some action result from interface: " + someInterfacedBean.getSomeValue();
+    }
+}
+
+----
+
+NOTE: Now you could use @Autowired annotation do DI into your webservices. All application server features (security, wsdl providing etc) will be saved.
