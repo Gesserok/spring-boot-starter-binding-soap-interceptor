@@ -1,4 +1,4 @@
-package com.sbrf.spring.binding;
+package org.example.spring.binding;
 
 import org.springframework.context.annotation.Import;
 

@@ -1,6 +1,6 @@
 *A spring binding library for JEE applications.*
 
-NOTE: This library adds com.sbrf.spring.binding.SpringBindingInterceptor that injects spring beans from context to fields annotated with @Autowired
+NOTE: This library adds org.example.spring.binding.SpringBindingInterceptor that injects spring beans from context to fields annotated with @Autowired
 
 '''
 *Short example of using:*
@@ -8,13 +8,13 @@ NOTE: This library adds com.sbrf.spring.binding.SpringBindingInterceptor that in
 - import dependency:
 [source,groovy]
 ----
-implementation "com.sbrf.spring:spring-boot-starter-binding-interceptor:1.0.0.0"
+implementation "org.example.spring:spring-boot-starter-binding-interceptor:1.0.0.0"
 ----
 
 - enable a configuration (@EnableSpringBinding):
 [source,java]
 ----
-import com.sbrf.spring.binding.EnableSpringBinding;
+import org.example.spring.binding.EnableSpringBinding;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -31,10 +31,10 @@ public class TestApplication extends SpringBootServletInitializer {
 
 ----
 
-- attach the  com.sbrf.spring.binding.SpringBindingInterceptor:
+- attach the  org.example.spring.binding.SpringBindingInterceptor:
 [source,java]
 ----
-import com.sbrf.spring.binding.SpringBindingInterceptor;
+import org.example.spring.binding.SpringBindingInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import ua.com.tests.jeespring.example.springbeans.SomeInterfacedBean;
 import ua.com.tests.jeespring.example.springbeans.SomeBean;
